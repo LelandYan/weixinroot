@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<img style="height: 340px;width: 340px;" id='qrcode' src="https://login.weixin.qq.com/qrcode/{{ qcode }}">
+<script src="{% static 'jquery-3.3.1.js' %}"></script>
+<script>
+    $(function () {
+        checklogin();
+    });
+    function checklogin() {
+        $.ajax({
+            url: '/check-login.html',
+            type: 'GET',
+            dataType: 'JSON',
+            success: function (arg) {
+                if (arg.code == 408){//无人扫码
+                    checklogin();
+                }else if (arg.code == 201){
+                    $('#qrcode').attr('src',arg.data);
+                    checklogin();
+                }else if (arg.code == 200){
+                    location.href = '/user.html';
+                }
+
+            }
+        })
+    }
+</script>
+</body>
+</html>
