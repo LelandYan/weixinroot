@@ -12,7 +12,7 @@ jieba==0.39
 Markdown==2.6.11
 Pillow==5.2.0
 pycparser==2.18
-Pygments==2.2.0
+Pygments==2.7.4
 PyMySQL==0.9.2
 pytz==2018.5
 requests==2.19.1
